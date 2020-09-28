@@ -10,7 +10,7 @@ export class ArbolAST{
         this.raiz = null;
         this.totalNodos = 0;
     }
-    public NewNodo(id: string, valor: string): void{
+    public NewNodo(id: string, valor: string, NodoPadre: NodoArbol): void{
         let nodo: NodoArbol;
         nodo = new NodoArbol(id, valor);
         if (this.totalNodos === 0 ){
