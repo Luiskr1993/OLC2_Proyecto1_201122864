@@ -8,9 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "jison":"jison ./src/app/grammar/grammar.jison && mv grammar.js ./src/app/grammar/"
+    "jison": "jison ./src/app/grammar/grammar.jison && mv grammar.js ./src/app/grammar/"
   },
-  "browser":{
+  "browser": {
     "fs": false,
     "path": false,
     "os": false
@@ -27,6 +27,7 @@
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",
+    "angular-cli-ghpages": "^0.6.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
