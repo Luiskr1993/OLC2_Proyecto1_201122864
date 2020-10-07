@@ -1,14 +1,14 @@
 
 export class NodoArbol {
-    public id: string;
+    public id: number;
     public valor: string;
     public hijos: NodoArbol[];
-    constructor(nuevoId: string, nuevoValor: string) {
+    constructor(nuevoId: number, nuevoValor: string) {
         this.id = nuevoId;
         this.valor = nuevoValor;
-        this.hijos = null;
+        this.hijos = [];
     }
-    public insertaHijo(id: string, valor: string): void {
+    public insertaHijo(id: number, valor: string): void {
         let nuevoNodo: NodoArbol;
         nuevoNodo = new NodoArbol(id, valor);
         if (nuevoNodo != null) {

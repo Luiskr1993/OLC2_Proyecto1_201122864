@@ -104,11 +104,9 @@
  var id = 0;
  
  function incrementa() {
-     id = id + 1;
-
-     return id;
+     id++;
  }
-%}
+}%
 
 // Operator associations and precedence.
 //
@@ -160,12 +158,11 @@ S:                      INICIO EOF {
                         ;
 
 INICIO:                 LINSTRUCCIONES {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INICIO");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INICIO");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
-                            $$ = temp;
                         }
                         ;
 
@@ -173,22 +170,22 @@ INICIO:                 LINSTRUCCIONES {
 LINSTRUCCIONES:         LINSTRUCCIONES INSTRUCCIONES {
                             //$1.push($2);
                             //$$ = $2;
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LINSTRUCCIONES");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LINSTRUCCIONES");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | INSTRUCCIONES {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LINSTRUCCIONES");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LINSTRUCCIONES");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -196,37 +193,37 @@ LINSTRUCCIONES:         LINSTRUCCIONES INSTRUCCIONES {
                         ;
 
 INSTRUCCIONES:          IMPORT {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INSTRUCCIONES");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INSTRUCCIONES");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | FUNCTION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INSTRUCCIONES");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INSTRUCCIONES");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | DEC_VARIABLE {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INSTRUCCIONES");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INSTRUCCIONES");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | STRUCT_DEF {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INSTRUCCIONES");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INSTRUCCIONES");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -236,38 +233,38 @@ INSTRUCCIONES:          IMPORT {
 
  IMPORT:                tImport LISTID tPtcoma {
                             //se crea un nodo para el tImport
-                            var id = incrementa();
+                            id = incrementa();
                             var raiz = new NodoArbol(id, "IMPORT");
-                            var id = incrementa();
+                            id = incrementa();
                             raiz.insertaHijo(id, $1.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             raiz.insertaHijo(id, $2.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             raiz.insertaHijo(id, $3.toString());
                             $$ = raiz;   
                         }
                         ;
 
  LISTID:                LISTID  tComa Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -276,207 +273,183 @@ INSTRUCCIONES:          IMPORT {
 
 
 DEC_VARIABLE:           tVar Identificador tDosPts tIgual CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
                         }
                         | tConst Identificador tDosPts tIgual CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
                         }
                         | tGlobal Identificador tDosPts tIgual CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp =  new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
                         }
                         | DEC_VARIABLE1 tPtcoma {
-                            var id = incrementa();
-                            var temp =  new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | TIPOA LISTID tIgual CONDICION  tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
                             $$ = temp;
                         }
                         | Identificador LISTID tIgual CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
                             $$ = temp;
                         }
                         | TIPOA LISTID  tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | Identificador LISTID tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
-
-                            $$ = temp;
-                        }
-                        | Identificador tDosPts TIPOS tIgual CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE");
-
-                            var id = incrementa();
-                            temp.insertaHijo(id, $1.toString());
-
-                            var id = incrementa();
-                            temp.insertaHijo(id, $2.toString());
-
-                            var id = incrementa();
-                            temp.insertaHijo(id, $3.toString());
-
-                            var id = incrementa();
-                            temp.insertaHijo(id, $4.toString());
-
-                            var id = incrementa();
-                            temp.insertaHijo(id, $5.toString());
-
-                            var id = incrementa();
-                            temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
                         }
                         ;
 
 DEC_VARIABLE1:          Identificador LISTACOR Identificador tIgual CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DEC_VARIABLE1");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DEC_VARIABLE1");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
                             $$ = temp;
@@ -484,22 +457,22 @@ DEC_VARIABLE1:          Identificador LISTACOR Identificador tIgual CONDICION {
                         ;
 
 TIPOA:                  TIPOP LISTACOR {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOA");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOA");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | TIPOP {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOA");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOA");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -508,37 +481,37 @@ TIPOA:                  TIPOP LISTACOR {
 
 
 TIPOP:                  tInteger {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOP");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOP");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tDouble {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOP");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOP");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tChar {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOP");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOP");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tBoolean {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOP");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOP");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -548,46 +521,46 @@ TIPOP:                  tInteger {
 
 
 TIPOS:                  tInteger {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOS");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOS");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tDouble {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOS");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOS");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tChar {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOS");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOS");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tBoolean {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOS");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOS");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TIPOS");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TIPOS");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -595,28 +568,28 @@ TIPOS:                  tInteger {
                         ;
 
 LISTACOR:               LISTACOR tCorizq tCorder {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISTACOR");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LISTACOR");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | tCorizq tCorder {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISTACOR");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LISTACOR");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
@@ -628,187 +601,187 @@ LISTACOR:               LISTACOR tCorizq tCorder {
 
 //FUNCIONES 
 FUNCTION:               TIPOA Identificador tPara LCPARAML tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
                             $$ = temp;
                         }    
                         | TIPOA Identificador tPara  tParc tLlavea BODYFUN tLlave {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
                             $$ = temp;
                         }  
                         | Identificador Identificador tPara LCPARAML tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
                             $$ = temp;
                         }     
                         | Identificador Identificador tPara  tParc tLlavea BODYFUN tLlave {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
                             $$ = temp;
                         } 
                         | tVoid Identificador tPara tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
                             $$ = temp;
                         }        
                         | tVoid Identificador tPara LCPARAML tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
                             $$ = temp;
                         }     
                         | tLlavea error tLlavec  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FUNCTION");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "FUNCTION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
@@ -822,61 +795,61 @@ FUNCTION:               TIPOA Identificador tPara LCPARAML tParc tLlavea BODYFUN
  */
 
 LCPARAML:               LCPARAML tComa TIPOA Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCPARAML");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCPARAML");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
                         }
                         | LCPARAML tComa Identificador Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCPARAML");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCPARAML");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
                         }
                         | TIPOA Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCPARAML");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCPARAML");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | Identificador Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCPARAML");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCPARAML");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
@@ -885,22 +858,22 @@ LCPARAML:               LCPARAML tComa TIPOA Identificador {
 
 
 BODYFUN:                BODYFUN INS_FUN {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "BODYFUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "BODYFUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | INS_FUN  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "BODYFUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "BODYFUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -909,125 +882,125 @@ BODYFUN:                BODYFUN INS_FUN {
 
 
 INS_FUN:                CNIF_F  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                  
                         | WHILE_F  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                              
                         | SWITCH_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                   
                         | ACCSATRI tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }                                                    
                         | DO_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                              
                         | FOR_F  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                          
                         | DEC_VARIABLE {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                                  
                         | CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }                          
                         | tReturn CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }                   
                         | PRINT tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         } 
                         | TRYCATCH {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                         }
                         | error tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INS_FUN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "INS_FUN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
@@ -1037,154 +1010,154 @@ INS_FUN:                CNIF_F  {
 
 // INICO  SENTENCIA IF
 CNIF_F:                 tIf tPara CONDICION tParc tLlavea BODYFUN tLlavec ELSEIF_F tElse tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CNIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CNIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $9.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $10.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $11.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $12.toString());
 
                             $$ = temp;
                         }
                         | tIf tPara CONDICION tParc tLlavea BODYFUN tLlavec tElse tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CNIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CNIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $9.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $10.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $11.toString());
 
                             $$ = temp;
                         }                  
                         | tIf tPara CONDICION tParc tLlavea BODYFUN tLlavec ELSEIF_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CNIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CNIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
                             $$ = temp;
                         }                
                         | tIf tPara CONDICION tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CNIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CNIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
                             $$ = temp;
                         }
                         | tIf  error tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CNIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CNIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
@@ -1194,22 +1167,22 @@ CNIF_F:                 tIf tPara CONDICION tParc tLlavea BODYFUN tLlavec ELSEIF
 
 
 ELSEIF_F:               ELSEIF_F EI_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "ELSEIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "ELSEIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | EI_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "ELSEIF_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "ELSEIF_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1218,31 +1191,31 @@ ELSEIF_F:               ELSEIF_F EI_F {
 
 
  EI_F:                  tElse tIf tPara CONDICION tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EI_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "EI_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
                             $$ = temp;
@@ -1253,106 +1226,106 @@ ELSEIF_F:               ELSEIF_F EI_F {
 
 // INICO  SENTENCIA SWITCH
 SWITCH_F:               tSwitch tPara CONDICION tParc tLlavea LCASE_F tDefault tDosPts BODYFUN tBreak tPtcoma tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "SWITCH_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "SWITCH_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $9.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $10.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $11.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $12.toString());
 
                             $$ = temp;
                         }
                         | tSwitch tPara CONDICION tParc tLlavea LCASE_F tDefault tDosPts BODYFUN  tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "SWITCH_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "SWITCH_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $9.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $10.toString());
 
                             $$ = temp;
                         }
                         | tSwitch tPara CONDICION tParc tLlavea LCASE_F  tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "SWITCH_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "SWITCH_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
                             $$ = temp;
@@ -1363,22 +1336,22 @@ SWITCH_F:               tSwitch tPara CONDICION tParc tLlavea LCASE_F tDefault t
 
 
 LCASE_F:                LCASE_F CASE_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCASE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCASE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | CASE_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCASE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCASE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1387,36 +1360,36 @@ LCASE_F:                LCASE_F CASE_F {
 
 
 CASE_F:                 tCase VALOP tDosPts BODYFUN tBreak tPtcoma {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "CASE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
                         }
                         | tCase VALOP tDosPts BODYFUN {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "CASE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
@@ -1424,37 +1397,37 @@ CASE_F:                 tCase VALOP tDosPts BODYFUN tBreak tPtcoma {
                         ;
 
 VALOP:                  | Cadena{
-                                    var id = incrementa();
+                                    id = incrementa();
                                     var temp = new NodoArbol(id, "VALOP");
 
-                                    var id = incrementa();
+                                    id = incrementa();
                                     temp.insertaHijo(id, $1.toString());
 
                                     $$ = temp;
                                 }
                         | Decimal{
-                                    var id = incrementa();
+                                    id = incrementa();
                                     var temp = new NodoArbol(id, "VALOP");
 
-                                    var id = incrementa();
+                                    id = incrementa();
                                     temp.insertaHijo(id, $1.toString());
 
                                     $$ = temp;
                                  }
                         | Number{ 
-                                    var id = incrementa();
+                                    id = incrementa();
                                     var temp = new NodoArbol(id, "VALOP");
 
-                                    var id = incrementa();
+                                    id = incrementa();
                                     temp.insertaHijo(id, $1.toString());
 
                                     $$ = temp;
                                 }
                         | Carater{
-                                    var id = incrementa();
+                                    id = incrementa();
                                     var temp = new NodoArbol(id, "VALOP");
 
-                                    var id = incrementa();
+                                    id = incrementa();
                                     temp.insertaHijo(id, $1.toString());
 
                                     $$ = temp;
@@ -1464,28 +1437,28 @@ VALOP:                  | Cadena{
 //WHILE 
 
 WHILE_F:                tWhile tPara CONDICION tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "WHILE_F");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "WHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
                             
                             $$ = temp;
@@ -1495,34 +1468,34 @@ WHILE_F:                tWhile tPara CONDICION tParc tLlavea BODYFUN tLlavec {
  
 //DO DE UNA FUNCION:                                  
 DO_F:                   tDo tLlavea BODYFUN tLlavec tWhile tPara CONDICION tParc tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DO_F");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "DO_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $9.toString());
                             
                             $$ = temp;
@@ -1531,28 +1504,28 @@ DO_F:                   tDo tLlavea BODYFUN tLlavec tWhile tPara CONDICION tParc
 
 // FOR DE UNA FUNCION
 FOR_F:                  tFor tPara FORCON tParc tLlavea BODYFUN tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FOR_F");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "FOR_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
                             
                             $$ = temp;
@@ -1560,52 +1533,52 @@ FOR_F:                  tFor tPara FORCON tParc tLlavea BODYFUN tLlavec {
                         ;                        
 
 FORCON:                 FOR1  tPtcoma CONDICION tPtcoma ACCSATRI {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FORCON");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "FORCON");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
                             
                             $$ = temp;
                         }
                         | tPtcoma CONDICION tPtcoma ACCSATRI {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FORCON");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "FORCON");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
                             
                             $$ = temp;
                         }
                         | tPtcoma tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FORCON");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "FORCON");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
                             
                             $$ = temp;
@@ -1613,19 +1586,19 @@ FORCON:                 FOR1  tPtcoma CONDICION tPtcoma ACCSATRI {
                         ;
 
 FOR1:                   DEC_VARIABLE1 {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "PRINT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "PRINT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | ACCSATRI {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "FOR1");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "FOR1");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1640,10 +1613,10 @@ FOR1:                   DEC_VARIABLE1 {
 
 
 PRINT:                  tPrint tPara PARAMETROS2 tParc {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "PRINT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "PRINT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1664,13 +1637,13 @@ ACCSATRI:               LCALL tIgual CONDICION
 
 
 INSTHROW:               tThrow CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "INSTHROW");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "INSTHROW");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
@@ -1680,43 +1653,43 @@ INSTHROW:               tThrow CONDICION tPtcoma {
 
 //TRY CATCH
 TRYCATCH:               tTry tLlavea LCWHILE_F tLlavec tCatch tPara Identificador Identificador tParc tLlavea LCWHILE_F tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "TRYCATCH");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "TRYCATCH");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $8.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $9.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $10.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $11.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $12.toString());
 
                             $$ = temp;
@@ -1726,22 +1699,22 @@ TRYCATCH:               tTry tLlavea LCWHILE_F tLlavec tCatch tPara Identificado
 
 
 LCWHILE_F:              LCWHILE_F CWHILE_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | CWHILE_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "LCWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1749,151 +1722,151 @@ LCWHILE_F:              LCWHILE_F CWHILE_F {
                         ;
 
 CWHILE_F:               CNIF_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | WHILE_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                  
                         | SWITCH_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                 
                         | DO_F  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                 
                         | FOR_F {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }                 
                         | DEC_VARIABLE  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }  
                         | CONDICION tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }              
                         | ACCSATRI tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }                                      
                         | tBreak tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }                    
                         | tContinue tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | tReturn CONDICION tPtcoma  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         } 
                         | tReturn tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }  
                         | PRINT tPtcoma  {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         |INSTHROW {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CWHILE_F");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "CWHILE_F");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1904,25 +1877,25 @@ CWHILE_F:               CNIF_F {
 
 // ARREGLOS
 DECARRAY:               TIPOP LISTACOR Identificador tIgual ARRAYIN tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "DECARRAY");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "DECARRAY");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
@@ -1931,25 +1904,25 @@ DECARRAY:               TIPOP LISTACOR Identificador tIgual ARRAYIN tPtcoma {
 
 
 ARRAYIN:                tStrc TIPOS LISTARREGLO {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "VALORARRAY");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "VALORARRAY");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | VALORARRAY {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "ARRAYIN");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "ARRAYIN");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1958,16 +1931,16 @@ ARRAYIN:                tStrc TIPOS LISTARREGLO {
 
 
 VALORARRAY:             tLlavea PARAMETROS2 tLlavec {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "VALORARRAY");
+                            id = incrementa();
+                            var temp = nodoArbol(id, "VALORARRAY");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             id = incremeta();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
@@ -1975,22 +1948,22 @@ VALORARRAY:             tLlavea PARAMETROS2 tLlavec {
                         ;
 
 LISTARRAY:              LISTARRAY LISTAARR {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISTAARRAY");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LISTAARRAY");
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
                             $$ = temp;
                         }
                         | LISTAARR {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISTAARRAY");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LISTAARRAY");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -1999,19 +1972,19 @@ LISTARRAY:              LISTARRAY LISTAARR {
 
 
 LISTAARR:               PARAMETROS2 {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISTAARR");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LISTAARR");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | VALORARRAY {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISTAARR");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LISTAARR");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -2019,34 +1992,34 @@ LISTAARR:               PARAMETROS2 {
                         ;                        
 
 LISTARREGLO:            LISTARREGLO tCorizq CONDICION tCorder {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "STRUCT_DEF");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "STRUCT_DEF");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
                         }
                         | tCorizq CONDICION tCorder {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "STRUCT_DEF");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "STRUCT_DEF");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
@@ -2056,84 +2029,80 @@ LISTARREGLO:            LISTARREGLO tCorizq CONDICION tCorder {
 
 //ESTRUCTURAS
 STRUCT_DEF:             tDefine Identificador tAs tCorizq LISATRIB tCorder tPtcoma {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "STRUCT_DEF");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "STRUCT_DEF");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $7.toString());
-                            $$ = temp;
                         }
                         ;
 
 
 LISATRIB:               LISATRIB tComa ATRIBUTO {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISATRIB");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LISATRIB");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
-                            $$ = temp;
                         }
                         | ATRIBUTO {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LISATRIB");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LISATRIB");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
-                            $$ = temp;
 
                         }
                         ;
 
 ATRIBUTO:               TIPOS Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "ATRIBUTO");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "ATRIBUTO");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
-                            $$ = temp;
                         }
                         | TIPOS Identificador tIgual CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "ATRIBUTO");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "ATRIBUTO");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
@@ -2141,73 +2110,73 @@ ATRIBUTO:               TIPOS Identificador {
                         ;
 
 CALSTRUCT:              tStrc Identificador  LISTACOR {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CALSTRUCT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CALSTRUCT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | tStrc Identificador tPara tParc {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CALSTRUCT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CALSTRUCT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
                         }
                         | tStrc TIPOP LISTARREGLO { /*definicion de arreglo*/
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CALSTRUCT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CALSTRUCT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | tStrc Identificador LISTARREGLO { /*definicion de arreglo*/
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CALSTRUCT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CALSTRUCT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | VALORARRAY { /*definicion de arreglo*/
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CALSTRUCT");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CALSTRUCT");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -2218,195 +2187,195 @@ CALSTRUCT:              tStrc Identificador  LISTACOR {
 
 
 CONDICION:              CONDICION tAnd CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | CONDICION tOr CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }           
                         | tNot CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | CONDICION tXor CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }     
                         | CONDICION tIguaIg CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }    
                         | CONDICION tNoIgu CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }  
                         | CONDICION tMayor CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | CONDICION tMenor CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | CONDICION tMayoI EX {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | CONDICION tMenoI CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }     
                         | CONDICION tTern CONDICION tDosPts  CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
                             
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
                             $$ = temp;
                         }  
                         | tTrue {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tFalse {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }              
                         | EX {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "CONDICION");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "CONDICION");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -2416,172 +2385,171 @@ CONDICION:              CONDICION tAnd CONDICION {
 
 
 EX:                     EX tMas EX {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
                             $$ = temp;
                         }                 
                         | EX tMenos EX {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | EX tPor EX {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | EX tDivision EX {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
                         | Cadena {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tPara CONDICION tParc {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             var temp;
                         }
                         | LCALL {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | Decimal {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | Number {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | Carater {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | tMenos EX %prec UMINUS {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
                         } 
                         | tNull {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
                             $$ = temp;
                         }
                         | CALSTRUCT {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | Tokpara error Tokparc {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "EX");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "EX");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
-                            $$ = temp;
                         }
                         ;
 
@@ -2589,10 +2557,10 @@ EX:                     EX tMas EX {
 
 
 PARAMETROS1:            PARAMETROS2 {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "PARAMETROS1");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "PARAMETROS1");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -2600,26 +2568,26 @@ PARAMETROS1:            PARAMETROS2 {
                         ; 
 
 PARAMETROS2:            PARAMETROS2 tComa CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "PARAMETROS2");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "PARAMETROS2");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
                         }
 
                         | CONDICION {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "PARAMETROS2");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "PARAMETROS2");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
@@ -2629,129 +2597,129 @@ PARAMETROS2:            PARAMETROS2 tComa CONDICION {
 
 //LLAMADAS DE TODO TIPO
 LCALL:                  LCALL tPunto Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCALL");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LCALL");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;
 
                         }
                         | LCALL tPunto Identificador tPara PARAMETROS2 tParc {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "LCALL");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $6.toString());
 
                             $$ = temp;
                         }
                         | LCALL tPunto Identificador tPara  tParc {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "LCALL");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $5.toString());
 
                             $$ = temp;
                         }
                         | LCALL tPunto Identificador LISTARREGLO {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "LCALL");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
                             
                             $$ = temp;
                         }
                         | Identificador {
-                            var id = incrementa();
-                            var temp = new NodoArbol(id, "LCALL");
+                            id = incrementa();
+                            var temp = new nodoArbol(id, "LCALL");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
                             $$ = temp;
                         }
                         | Identificador tPara PARAMETROS2 tParc {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "LCALL");
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $4.toString());
 
                             $$ = temp;
                         }
                         | Identificador LISTARREGLO {
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "LCALL");
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
 
                             $$ = temp;
                         }
                         | Identificador tPara  tParc{
-                            var id = incrementa();
+                            id = incrementa();
                             var temp = new NodoArbol(id, "LCALL");
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $1.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $2.toString());
-                            var id = incrementa();
+                            id = incrementa();
                             temp.insertaHijo(id, $3.toString());
 
                             $$ = temp;

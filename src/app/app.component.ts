@@ -1,5 +1,7 @@
+
 import { Component } from '@angular/core';
-import { Gramatica } from './grammar/grammar.js';
+import Gramatica from './grammar/grammar.js';
+import { NodoArbol } from '../app/AST/NodoArbol';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,6 @@ export class AppComponent {
   }
 
   leerCadenaEntrada(): void{
-    const analizador = new Gramatica();
     let consola =  (document.getElementById('textConsola') as HTMLInputElement).value;
     consola += '[Proc]:Leyendo código de entrada... \n';
 
@@ -27,9 +28,16 @@ export class AppComponent {
       consola += '[COD]: ';
       consola += contenido;
       consola += '\n';
-      const respuesta = analizador.parse(contenido);
-      consola += '[Analizador]: ';
-      consola += respuesta + '\n';
+      (document.getElementById('textAreaProcesado') as HTMLInputElement).value = contenido ;
+      (document.getElementById('textConsola') as HTMLInputElement).value = consola ;
+      let nodoRaiz = new NodoArbol(0, '');
+      nodoRaiz = Gramatica.parse(contenido);
+      if (nodoRaiz === null) {
+        consola += '[Analizador]:La raiz está vacía' + '\n';
+      } else {
+        consola += '[Analizador]:NodoRaiz->  ';
+        consola += 'ID:' + nodoRaiz.id + '  Valor:' + nodoRaiz.valor + '\n';
+      }
       (document.getElementById('textAreaProcesado') as HTMLInputElement).value = contenido ;
       (document.getElementById('textConsola') as HTMLInputElement).value = consola ;
     }
