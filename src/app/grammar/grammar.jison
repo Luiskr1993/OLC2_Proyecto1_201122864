@@ -458,6 +458,23 @@ DEC_VARIABLE:           tVar Identificador tDosPts tIgual CONDICION tPtcoma {
 
                             $$ = temp;
                         }
+                        | Identificador tDosPts TIPOS tPtcoma {
+                            var id = incrementa();
+                            var temp = new NodoArbol(id, "DEC_VARIABLE");
+
+                            var id = incrementa();
+                            temp.insertaHijo(id, $1.toString());
+
+                            var id = incrementa();
+                            temp.insertaHijo(id, $2.toString());
+
+                            var id = incrementa();
+                            temp.insertaHijo(id, $3.toString());
+
+                            var id = incrementa();
+                            temp.insertaHijo(id, $4.toString());
+
+                        }
                         ;
 
 DEC_VARIABLE1:          Identificador LISTACOR Identificador tIgual CONDICION {
